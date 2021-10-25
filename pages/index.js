@@ -4,12 +4,12 @@ function useGraphql(query) {
   const [response, setResponse] = useState({ status: null, body: null, error: null });
   useEffect(() => {
     setResponse({ status: 'pending', body: null, error: null });
-    window
-      .fetch('/api/graphql', {
-        body: query,
-        method: 'post'
-      })
+    fetch('/api/graphql', {
+      body: query,
+      method: 'post'
+    })
       .then((res) => {
+        console.log(res);
         return res.json().then((body) => ({ status: res.status, body }));
       })
       .then((res) => {
